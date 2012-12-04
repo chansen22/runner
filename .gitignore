@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
+# Swap
+*.sw?
+
 # gemlock
 .Gemfile.lock
