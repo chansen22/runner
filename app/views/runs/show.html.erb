@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @run.url %>
+</p>
+
+<p>
+  <b>Verified:</b>
+  <%= @run.verified %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @run.category %>
+</p>
+
+<p>
+  <b>Time in seconds:</b>
+  <%= @run.time_in_seconds %>
+</p>
+
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>
