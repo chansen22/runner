@@ -1,0 +1,23 @@
+<h1>Listing leaderboards</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @leaderboards.each do |leaderboard| %>
+  <tr>
+    <td><%= leaderboard.name %></td>
+    <td><%= link_to 'Show', leaderboard %></td>
+    <td><%= link_to 'Edit', edit_leaderboard_path(leaderboard) %></td>
+    <td><%= link_to 'Destroy', leaderboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Leaderboard', new_leaderboard_path %>
