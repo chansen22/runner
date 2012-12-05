@@ -8,8 +8,6 @@ Speedrunner::Application.routes.draw do
 
   resources :games
 
-  resources :leaderboards
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
