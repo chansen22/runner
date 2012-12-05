@@ -5,8 +5,10 @@ class CreateRuns < ActiveRecord::Migration
       t.boolean :verified
       t.string :category
       t.integer :time_in_seconds
+			t.references :game
 
       t.timestamps
     end
+    add_index :runs, :game_id
   end
 end
