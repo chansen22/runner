@@ -1,6 +1,8 @@
 = form_for(@game) do |f|
   - if @game.errors.any?
     #error_explanation
+    %div.alert
+      %button{ type: "button", class: "close", data-dismiss: "alert" } ×
       %h2= pluralize(@game.errors.count, "error")
       prohibited this game from being saved:
 
@@ -18,7 +20,7 @@
 
   .field
     = f.label :release_year
-    = f.number_field :release_year
+    = f.number_field :release_year, value: 2000
 
   .field
     = f.label :publisher
