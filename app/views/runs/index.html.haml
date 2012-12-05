@@ -1,0 +1,26 @@
+%h1
+	Listing runs
+
+%table
+  %tr
+    %th Url
+    %th Verified
+    %th Category
+    %th Time in seconds
+    %th
+    %th
+    %th
+
+- @runs.each do |run|
+  %tr
+    %td= run.url
+    %td= run.verified
+    %td= run.category
+    %td= run.time_in_seconds
+    %td= link_to 'Show', run
+    %td= link_to 'Edit', edit_run_path(run)
+    %td= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Run', new_run_path

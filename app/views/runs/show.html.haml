@@ -1,0 +1,26 @@
+%p#notice= notice
+
+%p
+  %b
+		Url:
+  = @run.url
+
+%p
+  %b
+		Verified:
+  = @run.verified
+
+%p
+  %b
+		Category:
+  = @run.category
+
+%p
+  %b
+		Time in seconds:
+  = @run.time_in_seconds
+
+
+= link_to 'Edit', edit_run_path(@run)
+%br
+= link_to 'Back', runs_path
