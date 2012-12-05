@@ -14,10 +14,13 @@
 ActiveRecord::Schema.define(:version => 20121204234047) do
 
   create_table "comments", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
+    t.integer  "run_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "comments", ["run_id"], :name => "index_comments_on_run_id"
 
   create_table "follows", :force => true do |t|
     t.integer  "user_id"
@@ -38,12 +41,6 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "leaderboards", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "moderates", :force => true do |t|
     t.integer  "user_id"
     t.integer  "game_id"
@@ -59,9 +56,12 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.boolean  "verified"
     t.string   "category"
     t.integer  "time_in_seconds"
+    t.integer  "game_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "runs", ["game_id"], :name => "index_runs_on_game_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "remember_token"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
