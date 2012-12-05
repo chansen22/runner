@@ -1,7 +1,7 @@
 = form_for(@user) do |f|
   - if @user.errors.any?
     #error_explanation
-      %h2= pluralize(@user.errors.count, error) 
+      %h2= pluralize(@user.errors.count, "Error") 
       prohibited this user from being saved:
 
       %ul
@@ -10,28 +10,27 @@
 
   .field
     = f.label :username
-    %br
     = f.text_field :username 
   
   .field
     = f.label :first_name
-    %br
     = f.text_field :first_name 
   
   .field
     = f.label :last_name
-    %br
     = f.text_field :last_name 
   
   .field
     = f.label :email
-    %br
     = f.text_field :email 
   
   .field
-    = f.label :password_digest
-    %br
-    = f.text_field :password_digest 
+    = f.label :password
+    = f.password_field :password
+
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
   
   .actions
     = f.submit 

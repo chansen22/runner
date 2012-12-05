@@ -20,11 +20,4 @@
     Email:
   = @user.email
 
-%p
-  %b
-    Password digest:
-  = @user.password_digest
-
-= link_to 'Edit', edit_user_path(@user)
-%br
 = link_to 'Back', users_path
