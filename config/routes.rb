@@ -2,11 +2,12 @@ Speedrunner::Application.routes.draw do
 
   resources :users
 
-  resources :comments
 
-  resources :runs
-
-  resources :games
+  resources :games do
+    resources :runs do
+      resources :comments
+    end
+  end
 
   match '/signup',  to: 'users#new'
   match '/signin',   to: "sessions#new", via: :get
