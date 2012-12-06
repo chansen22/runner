@@ -1,11 +1,11 @@
 Speedrunner::Application.routes.draw do
 
-  resources :users
+  resources :users, except: :new
 
 
   resources :games do
     resources :runs do
-      resources :comments
+      resources :comments, only: [:create, :destroy]
     end
   end
 
