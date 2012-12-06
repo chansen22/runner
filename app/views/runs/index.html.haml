@@ -1,7 +1,7 @@
 %h1
-	Listing runs
+  Listing runs
 
-%table
+%table.table
   %tr
     %th Url
     %th Verified
@@ -11,16 +11,16 @@
     %th
     %th
 
-- @runs.each do |run|
-  %tr
-    %td= run.url
-    %td= run.verified
-    %td= run.category
-    %td= run.time_in_seconds
-    %td= link_to 'Show', run
-    %td= link_to 'Edit', edit_run_path(run)
-    %td= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' }
+  - @runs.each do |run|
+    %tr
+      %td= run.url
+      %td= run.verified
+      %td= run.category
+      %td= run.time_in_seconds
+      %td= link_to 'Show', game_run_path(run.game_id, run)
+      %td= link_to 'Edit', '#'
+      %td= link_to 'Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Run', new_run_path
+= link_to 'New Run', '#'
