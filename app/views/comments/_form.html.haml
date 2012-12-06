@@ -1,4 +1,4 @@
-= form_for(@comment) do |f|
+= form_for([:game, :run, @comment]) do |f|
   - if @comment.errors.any?
     #error_explanation
       %h2= pluralize(@comment.errors.count, "error")
