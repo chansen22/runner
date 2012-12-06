@@ -2,7 +2,6 @@ Speedrunner::Application.routes.draw do
 
   resources :users
 
-
   resources :games do
     resources :runs do
       resources :comments

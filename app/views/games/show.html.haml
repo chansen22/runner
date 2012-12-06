@@ -24,6 +24,8 @@
   = @game.series
 
 
-= link_to 'Edit', edit_game_path(@game)
+- if current_user && is_admin?
+  = link_to 'Edit', edit_game_path(@game), class: "btn"
+  %br
 %br
-= link_to 'Back', games_path
+= link_to 'Back', games_path, class: "btn"
