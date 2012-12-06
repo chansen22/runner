@@ -14,6 +14,8 @@ class RunsController < ApplicationController
   # GET /runs/1.json
   def show
     @run = Run.find(params[:id])
+    @comments = Comment.where("run_id=?", @run.id)
+    @comment = Comment.new()
 
     respond_to do |format|
       format.html # show.html.erb
