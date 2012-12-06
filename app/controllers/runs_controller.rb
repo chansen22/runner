@@ -24,6 +24,7 @@ class RunsController < ApplicationController
   # GET /runs/new
   # GET /runs/new.json
   def new
+    @game = Game.find(params[:game_id])
     @run = Run.new
 
     respond_to do |format|
@@ -40,11 +41,13 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    @run = Run.new(params[:run])
+    @game = Game.find(params[:game_id])
+    @run = @game.runs.create(params[:run])
+		logger.info("\n\n\n\n\n\n\n\nPARAMS IS #{params}")
 
     respond_to do |format|
       if @run.save
-        format.html { redirect_to @run, notice: 'Run was successfully created.' }
+        format.html { redirect_to game_runs_path(@run), notice: 'Run was successfully created.' }
         format.json { render json: @run, status: :created, location: @run }
       else
         format.html { render action: "new" }
