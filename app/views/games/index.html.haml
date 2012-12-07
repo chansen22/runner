@@ -2,26 +2,27 @@
   Listing games
 
 %table.table
-  %tr
-    %th Name
-    %th System
-    %th Release year
-    %th Publisher
-    %th Series
-    - if current_user && is_admin?
-      %th
-      %th
-
-  - @games.each do |game|
+  %thead
     %tr
-      %td= link_to game.name, game
-      %td= game.system
-      %td= game.release_year
-      %td= game.publisher
-      %td= game.series
+      %th Name
+      %th System
+      %th Release year
+      %th Publisher
+      %th Series
       - if current_user && is_admin?
-        %td= link_to 'Edit', edit_game_path(game), class: "btn"
-        %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+        %th
+        %th
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= link_to game.name, game
+        %td= game.system
+        %td= game.release_year
+        %td= game.publisher
+        %td= game.series
+        - if current_user && is_admin?
+          %td= link_to 'Edit', edit_game_path(game), class: "btn"
+          %td= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 
 %br
 

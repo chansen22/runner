@@ -4,7 +4,7 @@ class CreateRuns < ActiveRecord::Migration
       t.string :url
       t.boolean :verified
       t.string :category
-      t.integer :time_in_seconds
+      t.string :time_in_seconds
 	t.references :game
       t.references :user
 

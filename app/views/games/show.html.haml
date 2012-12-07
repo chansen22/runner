@@ -53,7 +53,8 @@
         %td
           = run.url
         %td
-          = run.verified
+          - if run.verified
+            √
 
 %br
 = link_to 'Back', games_path, class: "btn"

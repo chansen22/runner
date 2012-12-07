@@ -38,25 +38,23 @@ class RunsController < ApplicationController
     @game = Game.find(params[:game_id])
     @run = @game.runs.create(params[:run])
     @run.user = current_user
-    logger.info("\n\n\n\n\n\n\n\nPARAMS IS #{params}")
 
-    respond_to do |format|
-      if @run.save
-        format.html { redirect_to game_path(@game), notice: 'Run was successfully created.' }
-        format.json { render json: @run, status: :created, location: @run }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @run.errors, status: :unprocessable_entity }
-      end
+    if @run.save
+      redirect_to game_path(@game), notice: 'Run was successfully created.'
+    else
+      render action: "new"
     end
   end
 
   def update
+    @game = Game.find(params[:game_id])
     @run = Run.find(params[:id])
 
     respond_to do |format|
       if @run.update_attributes(params[:run])
-        format.html { redirect_to @run, notice: 'Run was successfully updated.' }
+        @run.user = current_user
+        @run.save
+        format.html { redirect_to game_path(@game), notice: 'Run was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
