@@ -20,7 +20,24 @@
     Time in seconds:
   = @run.time_in_seconds
 
+%p
+  %b
+    Comments:
+    %br
+  -@comments.each do |c|
+    =c.text
+    %br
 
-= link_to 'Edit', edit_run_path(@run)
+=form_tag(game_run_comments_path(@run.game, @run), :method => :create) do
+  .field
+    =label :comment, :text, ("Comment")
+    =text_area :comment, :text, cols: 25, rows: 5
+
+  .actions
+    =submit_tag("Add")
+
+= link_to 'Edit', edit_game_run_path(@run)
 %br
-= link_to 'Back', runs_path
+= link_to 'Back', game_runs_path
+
+    
