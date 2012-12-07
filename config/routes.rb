@@ -11,7 +11,7 @@ Speedrunner::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',   to: "sessions#new", via: :get
   match '/signin',   to: "sessions#create", via: :post, as: :post_sessions
-  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/signout', to: 'sessions#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
