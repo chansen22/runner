@@ -1,55 +1,48 @@
 class RunsController < ApplicationController
-  # GET /runs
-  # GET /runs.json
   def index
     @runs = Run.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @runs }
     end
   end
 
-  # GET /runs/1
-  # GET /runs/1.json
   def show
     @run = Run.find(params[:id])
+    @game = @run.game
     @comments = Comment.where("run_id=?", @run.id)
     @comment = Comment.new()
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @run }
     end
   end
 
-  # GET /runs/new
-  # GET /runs/new.json
   def new
     @game = Game.find(params[:game_id])
     @run = Run.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @run }
     end
   end
 
-  # GET /runs/1/edit
   def edit
     @run = Run.find(params[:id])
   end
 
-  # POST /runs
-  # POST /runs.json
   def create
     @game = Game.find(params[:game_id])
     @run = @game.runs.create(params[:run])
-		logger.info("\n\n\n\n\n\n\n\nPARAMS IS #{params}")
+    @run.user = current_user
+    logger.info("\n\n\n\n\n\n\n\nPARAMS IS #{params}")
 
     respond_to do |format|
       if @run.save
-        format.html { redirect_to game_runs_path(@run), notice: 'Run was successfully created.' }
+        format.html { redirect_to game_path(@game), notice: 'Run was successfully created.' }
         format.json { render json: @run, status: :created, location: @run }
       else
         format.html { render action: "new" }
@@ -58,8 +51,6 @@ class RunsController < ApplicationController
     end
   end
 
-  # PUT /runs/1
-  # PUT /runs/1.json
   def update
     @run = Run.find(params[:id])
 
@@ -74,8 +65,6 @@ class RunsController < ApplicationController
     end
   end
 
-  # DELETE /runs/1
-  # DELETE /runs/1.json
   def destroy
     @run = Run.find(params[:id])
     @run.destroy

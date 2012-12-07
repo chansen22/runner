@@ -10,6 +10,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @runs = @game.runs.all
 
     respond_to do |format|
       format.html

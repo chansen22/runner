@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.string   "category"
     t.integer  "time_in_seconds"
     t.integer  "game_id"
+    t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

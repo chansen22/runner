@@ -1,6 +1,4 @@
-%p
-  %b
-    Name:
+%h1
   = @game.name
 
 %p
@@ -23,9 +21,46 @@
     Series:
   = @game.series
 
+%br
+- if current_user
+  = link_to "New Run", new_game_run_path(@game), class: "btn"
+%br
+%br
+%h1
+  Runs
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        Username
+      %th
+        Time
+      %th
+        Category
+      %th
+        Link
+      %th
+        Verified
+  %tbody
+    - @runs.each do |run|
+      %tr
+        %td
+          = link_to "#{run.user.username}", run.user
+        %td
+          = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+        %td
+          = run.category
+        %td
+          = run.url
+        %td
+          = run.verified
 
-- if current_user && is_admin?
-  = link_to 'Edit', edit_game_path(@game), class: "btn"
-  %br
 %br
 = link_to 'Back', games_path, class: "btn"
+
+- if current_user && is_admin?
+  %br
+  %br
+  = link_to 'Edit Game', edit_game_path(@game), class: "btn"
+  %br
+

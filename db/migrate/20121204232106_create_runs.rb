@@ -5,7 +5,8 @@ class CreateRuns < ActiveRecord::Migration
       t.boolean :verified
       t.string :category
       t.integer :time_in_seconds
-			t.references :game
+	t.references :game
+      t.references :user
 
       t.timestamps
     end
