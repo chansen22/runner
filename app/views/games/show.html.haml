@@ -96,6 +96,9 @@
             Link
           %th
             Verified
+          - if !@mod.nil? || is_admin?
+            %th
+              Verify?
       %tbody
         - @runs100.each do |run|
           - if run.verified == true || !@mod.nil? || is_admin?
