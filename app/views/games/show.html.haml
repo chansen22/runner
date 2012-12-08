@@ -46,18 +46,19 @@
             Verified
       %tbody
         - @runsany.each do |run|
-          %tr
-            %td
-              = link_to "#{run.user.username}", run.user
-            %td
-              = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
-            %td
-              = run.category
-            %td
-              = run.url
-            %td
-              - if run.verified
-                √
+          - if run.verified == true
+            %tr
+              %td
+                = link_to "#{run.user.username}", run.user
+              %td
+                = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+              %td
+                = run.category
+              %td
+                = run.url
+              %td
+                - if run.verified
+                  √
 
 
   .span6
@@ -78,18 +79,19 @@
             Verified
       %tbody
         - @runs100.each do |run|
-          %tr
-            %td
-              = link_to "#{run.user.username}", run.user
-            %td
-              = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
-            %td
-              = run.category
-            %td
-              = run.url
-            %td
-              - if run.verified
-                √
+          - if run.verified == true
+            %tr
+              %td
+                = link_to "#{run.user.username}", run.user
+              %td
+                = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+              %td
+                = run.category
+              %td
+                = run.url
+              %td
+                - if run.verified
+                  √
 
 %br
 = link_to 'Back', games_path, class: "btn"
