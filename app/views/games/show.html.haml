@@ -1,90 +1,95 @@
 %h1
   = @game.name
+  
+.well
+  %p
+    %b
+      System:
+    = @game.system
 
-%p
-  %b
-    System:
-  = @game.system
+  %p
+    %b
+      Release year:
+    = @game.release_year
 
-%p
-  %b
-    Release year:
-  = @game.release_year
+  %p
+    %b
+      Publisher:
+    = @game.publisher
 
-%p
-  %b
-    Publisher:
-  = @game.publisher
-
-%p
-  %b
-    Series:
-  = @game.series
+  %p
+    %b
+      Series:
+    = @game.series
 
 %br
 - if current_user
   = link_to "New Run", new_game_run_path(@game), class: "btn"
 %br
 %br
-%h1
-  Runs - Any%
-%table.table.table-striped
-  %thead
-    %tr
-      %th
-        Username
-      %th
-        Time
-      %th
-        Category
-      %th
-        Link
-      %th
-        Verified
-  %tbody
-    - @runsany.each do |run|
-      %tr
-        %td
-          = link_to "#{run.user.username}", run.user
-        %td
-          = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
-        %td
-          = run.category
-        %td
-          = run.url
-        %td
-          - if run.verified
-            √
+.row
+  .span6
+    %h1
+      Runs - Any%
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+            Username
+          %th
+            Time
+          %th
+            Category
+          %th
+            Link
+          %th
+            Verified
+      %tbody
+        - @runsany.each do |run|
+          %tr
+            %td
+              = link_to "#{run.user.username}", run.user
+            %td
+              = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+            %td
+              = run.category
+            %td
+              = run.url
+            %td
+              - if run.verified
+                √
 
-%h1
-  Runs - 100%
-%table.table.table-striped
-  %thead
-    %tr
-      %th
-        Username
-      %th
-        Time
-      %th
-        Category
-      %th
-        Link
-      %th
-        Verified
-  %tbody
-    - @runs100.each do |run|
-      %tr
-        %td
-          = link_to "#{run.user.username}", run.user
-        %td
-          = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
-        %td
-          = run.category
-        %td
-          = run.url
-        %td
-          - if run.verified
-            √
+
+  .span6
+    %h1
+      Runs - 100%
+    %table.table.table-striped.span6
+      %thead
+        %tr
+          %th
+            Username
+          %th
+            Time
+          %th
+            Category
+          %th
+            Link
+          %th
+            Verified
+      %tbody
+        - @runs100.each do |run|
+          %tr
+            %td
+              = link_to "#{run.user.username}", run.user
+            %td
+              = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+            %td
+              = run.category
+            %td
+              = run.url
+            %td
+              - if run.verified
+                √
 
 %br
 = link_to 'Back', games_path, class: "btn"
