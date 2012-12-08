@@ -10,6 +10,9 @@ Speedrunner::Application.routes.draw do
 
   resources :games do
     resources :runs do
+      member do
+        get 'verifyrun'
+      end
       resources :comments, only: [:create, :destroy]
     end
   end

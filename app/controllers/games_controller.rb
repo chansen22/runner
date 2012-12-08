@@ -12,6 +12,9 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @runsany = @game.runs.where(category: "any%")
     @runs100 = @game.runs.where(category: "100%")
+    if current_user
+      @mod = @game.moderates.where(user_id: current_user.id).first
+    end
 
     respond_to do |format|
       format.html

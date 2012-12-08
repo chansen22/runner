@@ -15,4 +15,9 @@ class Run < ActiveRecord::Base
       run.url = "http://#{run.url}"
     end
   end
+
+  def self.togglerun(runid)
+    run = Run.find(runid)
+    run.toggle!(:verified)
+  end
 end

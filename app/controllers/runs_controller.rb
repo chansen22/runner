@@ -1,4 +1,5 @@
 class RunsController < ApplicationController
+  before_filter :moderator, only: [:verifyrun]
   def index
     @runs = Run.all
 
@@ -75,6 +76,14 @@ class RunsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to runs_url }
       format.json { head :no_content }
+    end
+  end
+
+  def verifyrun
+    if Run.togglerun(params[:id])
+      redirect_to game_path(Game.find(params[:game_id])), notice: "Run verification toggled"
+    else
+      redirect_to game_path(Game.find(params[:game_id])), notice: "Could not toggle verification"
     end
   end
 end

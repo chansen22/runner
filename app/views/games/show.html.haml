@@ -44,9 +44,12 @@
             Link
           %th
             Verified
+          - if !@mod.nil? || is_admin?
+            %th
+              Verify?
       %tbody
         - @runsany.each do |run|
-          - if run.verified == true
+          - if run.verified == true || !@mod.nil? || is_admin?
             %tr
               %td
                 = link_to "#{run.user.username}", run.user
@@ -59,6 +62,13 @@
               %td
                 - if run.verified
                   √
+              - if !@mod.nil? || is_admin?
+                %td
+                  - if run.verified
+                    = link_to "Remove Verification", verifyrun_game_run_path(@game, run), class: "btn"
+                  - else
+                    = link_to "Verify Run", verifyrun_game_run_path(@game, run), class: "btn"
+
 
 
   .span6
@@ -79,7 +89,7 @@
             Verified
       %tbody
         - @runs100.each do |run|
-          - if run.verified == true
+          - if run.verified == true || !@mod.nil? || is_admin?
             %tr
               %td
                 = link_to "#{run.user.username}", run.user
@@ -92,6 +102,12 @@
               %td
                 - if run.verified
                   √
+              - if !@mod.nil? || is_admin?
+                %td
+                  - if run.verified
+                    = link_to "Remove Verification", verifyrun_game_run_path(@game, run), class: "btn"
+                  - else
+                    = link_to "Verify Run", verifyrun_game_run_path(@game, run), class: "btn"
 
 %br
 = link_to 'Back', games_path, class: "btn"
