@@ -1,6 +1,10 @@
 Speedrunner::Application.routes.draw do
 
   resources :users, except: :new do
+    member do
+      get 'moderate'
+      post 'moderateset'
+    end
     resources :follows, only: [:create, :destroy]
   end
 

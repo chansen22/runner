@@ -9,6 +9,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def moderate
+    @user = User.find(params[:id])
+    @games = Game.all.collect { |g| [g.name, g.id] }
+    @moderator = []
+  end
+
+  def moderateset
+    @user = User.find(params[:user_id])
+    @game = Game.find(params[:game_id])
+    if @user.moderates << Moderate.new(user_id: @user.id, game_id: @game.id)
+      redirect_to users_path
+    else
+      render 'moderate', notice: "Something went wrong"
+    end
+  end
+
   def new
     @user = User.new
   end
