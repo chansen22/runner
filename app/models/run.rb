@@ -3,4 +3,5 @@ class Run < ActiveRecord::Base
   belongs_to :game
   belongs_to :user
   has_many :comments, :dependent => :destroy
+  default_scope order("time_in_seconds ASC")
 end
