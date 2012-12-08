@@ -22,6 +22,15 @@
       Series:
     = @game.series
 
+- if !@firstanyurl.nil? || !@first100url.nil?
+  .row
+    .span6
+      - if !@firstanyurl.nil?
+        %iframe{ width: "420", height: "315", src: "http://www.youtube.com/embed/#{@firstanyurl}", frameborder: "0", allowfullscreen: true }
+    .span6 
+      - if !@first100url.nil?
+        %iframe{ width: "420", height: "315", src: "http://www.youtube.com/embed/#{@first100url}", frameborder: "0", allowfullscreen: true }
+
 %br
 - if current_user
   = link_to "New Run", new_game_run_path(@game), class: "btn"
@@ -87,6 +96,9 @@
             Link
           %th
             Verified
+          - if !@mod.nil? || is_admin?
+            %th
+              Verify?
       %tbody
         - @runs100.each do |run|
           - if run.verified == true || !@mod.nil? || is_admin?
