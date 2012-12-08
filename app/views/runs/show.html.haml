@@ -27,11 +27,11 @@
   -@comments.each do |c|
     =c.text
     %br
-
-=form_tag(game_run_comments_path(@run.game, @run), :method => :create) do
-  .field
-    =label :comment, :text, ("Comment")
-    =text_area :comment, :text, cols: 25, rows: 5
+-if signed_in?
+  =form_tag(game_run_comments_path(@run.game, @run), :method => :create) do
+    .field
+      =label :comment, :text, ("Comment")
+      =text_area :comment, :text, cols: 25, rows: 5
 
   .actions
     =submit_tag("Add")

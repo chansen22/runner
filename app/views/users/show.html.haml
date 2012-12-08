@@ -17,9 +17,13 @@
   %b
     Email:
   = @user.email
-
-=form_tag(user_follows_path(@user), :method => :create) do
-  .actions
-    =submit_tag("Follow")
+-if signed_in?
+  -if @user != current_user
+    -if @following.empty?
+      =form_tag(user_follows_path(@user), :method => :create) do
+        .actions
+          =submit_tag("Follow")
+    -else
+      =link_to 'Unfollow', user_follow_path(@user), method: :delete
 
 = link_to 'Back', users_path

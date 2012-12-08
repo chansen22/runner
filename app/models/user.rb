@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :moderates
-  has_many :follows
-  has_many :runs
+  has_many :moderates, :dependent => :destroy
+  has_many :follows, :dependent => :destroy
+  has_many :runs, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
   has_secure_password

@@ -1,25 +1,6 @@
 class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
-  def index
-    @comments = Comment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comments }
-    end
-  end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comment }
-    end
-  end
 
   # GET /comments/new
   # GET /comments/new.json
@@ -35,11 +16,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1/edit
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
   # POST /comments
   # POST /comments.json
   def create
@@ -47,6 +23,7 @@ class CommentsController < ApplicationController
     @run = Run.find(params[:run_id])
     @comment = @run.comments.create(params[:comment])
     @comment.run_id = @run.id
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
         format.html { redirect_to game_run_path(@game, @run), notice: 'Comment was successfully created.' }
