@@ -38,7 +38,11 @@ class RunsController < ApplicationController
     @game = Game.find(params[:game_id])
     @run = @game.runs.create(params[:run])
     @run.user = current_user
-    @run.verified = true
+    if @run.url =~ /.+\..+/
+      @run.verified = true
+    else
+      @run.verified = false
+    end
 
     if @run.save
       redirect_to game_path(@game), notice: 'Run was successfully created.'
