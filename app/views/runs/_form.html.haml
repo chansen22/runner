@@ -11,11 +11,7 @@
 
   .field
     = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :verified
-    = f.check_box :verified
-    
+    = f.url_field :url, required: true
   .field
     = f.label :category
     = f.text_field :category
