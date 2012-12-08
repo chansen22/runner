@@ -1,6 +1,8 @@
 Speedrunner::Application.routes.draw do
 
-  resources :users, except: :new
+  resources :users, except: :new do
+    resources :follows, only: [:create, :destroy]
+  end
 
   resources :games do
     resources :runs do

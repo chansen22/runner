@@ -18,4 +18,8 @@
     Email:
   = @user.email
 
+=form_tag(user_follows_path(@user), :method => :create) do
+  .actions
+    =submit_tag("Follow")
+
 = link_to 'Back', users_path
