@@ -2,6 +2,16 @@
   = "Make #{@user.username} Moderator"
 %br
 
+- if !@user.moderates.empty?
+  %h2
+    = "#{@user.username} already moderates these games:"
+    .well
+      %ul
+        - @user.moderates.each do |mod|
+          %li= Game.find(mod.game_id).name
+
+%br
+
 = form_for("moderator[]", url: { action: "moderateset", user_id: params[:id] }) do |f|
   - if @user.errors.any?
     #error_explanation

@@ -16,12 +16,14 @@ class UsersController < ApplicationController
   end
 
   def moderateset
+    @users = User.all
     @user = User.find(params[:user_id])
     @game = Game.find(params[:game_id])
-    if @user.moderates << Moderate.new(user_id: @user.id, game_id: @game.id)
+    if @user.moderates.where(game_id: @game.id).empty?
+      @user.moderates << Moderate.new(user_id: @user.id, game_id: @game.id)
       redirect_to users_path
     else
-      render 'moderate', notice: "Something went wrong"
+      render 'index', notice: "#{@user.username} already moderates that game"
     end
   end
 
