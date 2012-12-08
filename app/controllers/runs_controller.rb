@@ -14,6 +14,12 @@ class RunsController < ApplicationController
     @game = @run.game
     @comments = Comment.where("run_id=?", @run.id)
     @comment = Comment.new()
+    if @run.url =~ /youtube/
+      @youtube = true
+      @suburl = @run.url.split("=").last
+    else
+      @youtube = false
+    end
 
     respond_to do |format|
       format.html
