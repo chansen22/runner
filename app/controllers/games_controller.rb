@@ -11,7 +11,13 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @runsany = @game.runs.where(category: "any%")
+    if !@runsany.empty? && @runsany.first.url =~ /youtube/
+      @firstanyurl = @runsany.first.url.split("=").last
+    end
     @runs100 = @game.runs.where(category: "100%")
+    if !@runs100.empty? && @runs100.first.url =~ /youtube/
+      @first100url = @runs100.first.url.split("=").last
+    end
     if current_user
       @mod = @game.moderates.where(user_id: current_user.id).first
     end
