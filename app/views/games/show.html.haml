@@ -27,7 +27,7 @@
 %br
 %br
 %h1
-  Runs
+  Runs - Any%
 %table.table.table-striped
   %thead
     %tr
@@ -42,7 +42,37 @@
       %th
         Verified
   %tbody
-    - @runs.each do |run|
+    - @runsany.each do |run|
+      %tr
+        %td
+          = link_to "#{run.user.username}", run.user
+        %td
+          = link_to "#{run.time_in_seconds}", game_run_path(@game, run)
+        %td
+          = run.category
+        %td
+          = run.url
+        %td
+          - if run.verified
+            √
+
+%h1
+  Runs - 100%
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        Username
+      %th
+        Time
+      %th
+        Category
+      %th
+        Link
+      %th
+        Verified
+  %tbody
+    - @runs100.each do |run|
       %tr
         %td
           = link_to "#{run.user.username}", run.user

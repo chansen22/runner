@@ -10,7 +10,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @runs = @game.runs.all
+    @runsany = @game.runs.where(category: "any%")
+    @runs100 = @game.runs.where(category: "100%")
 
     respond_to do |format|
       format.html

@@ -14,7 +14,7 @@
     = f.url_field :url, required: true
   .field
     = f.label :category
-    = f.text_field :category
+    = f.select :category, "<option>any%</option><option>100%</option>".html_safe
   .field
     = f.label :time_in_seconds, "Time eg: HH:MM:SS"
     = f.text_field :time_in_seconds
