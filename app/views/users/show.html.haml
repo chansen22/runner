@@ -17,6 +17,15 @@
   %b
     Email:
   = @user.email
+
+%p
+  %b
+    People #{@user.username} is Following:
+    %br
+  -@usersbeingfollowed.each do |u|
+    =link_to u.username, user_path(u.id)
+    %br
+
 -if signed_in?
   -if @user != current_user
     -if @following.empty?

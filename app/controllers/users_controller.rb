@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     if signed_in?
       @following = Follow.where("followee_id = ? AND user_id = ?", params[:id], current_user.id)
     end
+    @followings = Follow.where("user_id = ?", params[:id])
+    @usersbeingfollowed = []
+    @followings.each do |f|
+      @usersbeingfollowed << User.find(f.followee_id)
+    end
   end
 
   def moderate
