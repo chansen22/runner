@@ -1,6 +1,7 @@
-%p
-  %b
-  = image_tag @user.avatar.url(:thumb)
+- if !@user.avatar =~ /missing/
+  %p
+    %b
+    = image_tag @user.avatar.url(:thumb)
 
 %p
   %b
