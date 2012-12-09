@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :admin_user, only: [:index]
+  before_filter :correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -61,4 +62,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
   end
+
+  private
+
+    def correct_user
+      if !current_user.nil?
+        @user = User.find(params[:id])
+        if @user.id != current_user.id
+          redirect_to root_path unless current_user.admin?
+        end
+      else
+        redirect_to games_path
+      end
+    end
 end
