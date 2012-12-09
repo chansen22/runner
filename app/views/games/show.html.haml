@@ -1,6 +1,5 @@
 %h1
-  - if !@game.coverart =~ /missing/
-    = image_tag @game.coverart.url(:thumb) 
+  = image_tag @game.coverart.url(:thumb) 
   = @game.name
 
 .well

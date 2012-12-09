@@ -1,9 +1,8 @@
 .row
   .span4
-    - if !@user.avatar =~ /missing/
-      %p
-        %b
-        = image_tag @user.avatar.url(:thumb)
+    %p
+      %b
+      = image_tag @user.avatar.url(:thumb)
     %p
       %b
         Username:
@@ -31,8 +30,7 @@
           People #{@user.username} is Following:
           %br
         -@usersbeingfollowed.each do |u|
-          - if !u.avatar =~ /missing/
-            = image_tag u.avatar.url(:thumb)
+          = image_tag u.avatar.url(:thumb)
           = link_to u.username, user_path(u.id)
           %br
 
