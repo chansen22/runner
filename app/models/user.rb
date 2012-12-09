@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :runs, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username, :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_secure_password
 
   validates(:first_name, presence: true)

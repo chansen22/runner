@@ -1,5 +1,9 @@
 %p
   %b
+  = image_tag @user.avatar.url(:thumb)
+
+%p
+  %b
     Username:
   = @user.username
 

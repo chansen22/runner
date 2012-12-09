@@ -38,3 +38,5 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem "paperclip", "~> 3.1"
