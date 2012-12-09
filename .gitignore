@@ -19,3 +19,6 @@
 
 # gemlock
 .Gemfile.lock
+
+#Ignore avatars and coverarts
+/public/system

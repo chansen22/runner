@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204234047) do
+ActiveRecord::Schema.define(:version => 20121209224617) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
@@ -39,8 +39,12 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.integer  "release_year"
     t.string   "publisher"
     t.string   "series"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "coverart_file_name"
+    t.string   "coverart_content_type"
+    t.integer  "coverart_file_size"
+    t.datetime "coverart_updated_at"
   end
 
   create_table "moderates", :force => true do |t|
@@ -73,9 +77,13 @@ ActiveRecord::Schema.define(:version => 20121204234047) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "admin",               :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end
