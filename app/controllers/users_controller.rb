@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @runs = @user.runs.all
     if signed_in?
       @following = Follow.where("followee_id = ? AND user_id = ?", params[:id], current_user.id)
     end

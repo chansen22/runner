@@ -31,9 +31,32 @@
           People #{@user.username} is Following:
           %br
         -@usersbeingfollowed.each do |u|
-          =image_tag u.avatar.url(:thumb)
-          =link_to u.username, user_path(u.id)
+          - if !u.avatar =~ /missing/
+            = image_tag u.avatar.url(:thumb)
+          = link_to u.username, user_path(u.id)
           %br
+
+.row
+  .span8
+    %table.table
+      %thead
+        %tr
+          %th
+            Time
+          %th
+            Game Name
+          %th
+            Verified
+      %tbody
+        - @runs.each do |run|
+          %tr
+            %td
+              = link_to run.time_in_seconds, game_run_path(run.game, run)
+            %td
+              = link_to run.game.name, game_path(run.game)
+            %td
+              - if run.verified
+                √ 
 
 -if signed_in?
   -if @user != current_user
