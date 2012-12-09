@@ -1,11 +1,10 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "SpeedRunner", '#', class: "brand white"
+      = link_to "SpeedRunner", root_path, class: "brand white"
       %nav
         %ul.nav.pull-right
-          %li= link_to "Home", '#'
-          %li= link_to "Help", '#'
+          %li= link_to "Home", root_path 
           - if signed_in?
             %li#fat-menu.dropdown
               %a{ :class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#" }
