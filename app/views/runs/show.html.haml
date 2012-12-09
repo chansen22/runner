@@ -23,13 +23,22 @@
 - if @youtube == true
   %iframe{ width: "420", height: "315", src: "http://www.youtube.com/embed/#{@suburl}", frameborder: "0", allowfullscreen: true }
 
-%p
-  %b
-    Comments:
-    %br
-  -@comments.each do |c|
-    =c.text
-    %br
+#comment
+  %p
+    %b
+      Comments:
+      %br
+    -@comments.each do |c|
+      .well
+        %p
+          %b
+            .pull-left= "#{c.user.username}:"
+        .pull-right= c.created_at
+        %br
+        %br
+        = c.text
+        %br
+
 -if signed_in?
   =form_tag(game_run_comments_path(@run.game, @run), :method => :create) do
     .field
