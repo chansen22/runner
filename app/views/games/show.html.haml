@@ -68,7 +68,7 @@
               %td
                 = run.category
               %td
-                = run.url
+                = link_to "Video", run.url, target: "_blank"
               %td
                 - if run.verified
                   √
