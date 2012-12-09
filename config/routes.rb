@@ -1,5 +1,7 @@
 Speedrunner::Application.routes.draw do
 
+  root to: "games#index"
+
   resources :users, except: :new do
     member do
       get 'moderate'
