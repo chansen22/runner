@@ -22,8 +22,8 @@ class CommentsController < ApplicationController
     @game = Game.find(params[:game_id])
     @run = Run.find(params[:run_id])
     @comment = @run.comments.create(params[:comment])
-    @comment.run_id = @run.id
-    @comment.user_id = current_user.id
+    @comment.run = @run
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
         format.html { redirect_to game_run_path(@game, @run), notice: 'Comment was successfully created.' }
